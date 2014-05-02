@@ -30,10 +30,17 @@ class AltoRouter {
 
 	/**
 	* auto discover the base path.
-	* this relies on server SCRIPT_FILENAME and DOCUMENT_ROOT
+	* this relies on server PATH_INFO and PHP_SELF
 	*/
 	public function discoverBasePath() {
-		$basePath = str_replace ( $_SERVER["DOCUMENT_ROOT"], '', dirname($_SERVER["SCRIPT_FILENAME"]) );
+        if(isset($_SERVER['PATH_INFO'])){
+            $pathinfo = $_SERVER['PATH_INFO'];
+        } else if(isset($_SERVER['ORIG_PATH_INFO'])){
+            $pathinfo = $_SERVER['ORIG_PATH_INFO'];
+        } else
+            $pathinfo = ''; // CGI ?
+        
+        $basePath = str_replace ( $pathinfo, '', $_SERVER["PHP_SELF"] );
 		return $basePath;
 	}
 
