@@ -2,6 +2,10 @@
 
 require '../../AltoRouter.php';
 
+// Force request_order to be GP
+// http://www.mail-archive.com/internals@lists.php.net/msg33119.html
+$_REQUEST = array_merge($_GET, $_POST);
+
 $router = new AltoRouter();
 //$router->setBasePath('/AltoRouter/examples/basic');
 $router->map('GET|POST','/', 'home#index', 'home');
