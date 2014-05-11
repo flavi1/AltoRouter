@@ -20,9 +20,9 @@ $match = $router->match();
 
 <h3>Current request: </h3>
 <pre>
-	Target: <?php var_dump($match['target']); ?>
-	Params: <?php var_dump($match['params']); ?>
-	Name: 	<?php var_dump($match['name']); ?>
+	Target: <?php print_r($match['target']); ?>
+	Params: <?php print_r($match['params']); ?>
+	Name: 	<?php print_r($match['name']); ?>
 </pre>
 
 <h3>Try these requests: </h3>
