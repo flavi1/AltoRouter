@@ -241,15 +241,21 @@ class AltoRouter {
 						if(is_numeric($key)) unset($params[$key]);
 					}
 				}
-
-				return array(
-					'target' => $target,
-					'params' => $params,
-					'name' => $name
-				);
+				
+				$result = $this->getMatchedResult($target, $name, $params);
+				if($result)	// check next if return false or null result
+					return $result;
 			}
 		}
 		return false;
+	}
+	
+	protected function getMatchedResult($target, $name, $params) {	// override it to get your own control strategy
+		return array(
+			'target' => $target,
+			'params' => $params,
+			'name' => $name
+		);
 	}
 
 	/**
